@@ -1,0 +1,3 @@
+- html title is subject
+- option between md and html
+- unsuscribe link env

@@ -11,7 +11,7 @@ var rootCmd = &cobra.Command{
 	Use:   "self-mailing",
 	Short: "A self-hosted CLI tool for sending emails to an email list",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Please specify a command.")
+		fmt.Println("Please specify a command. Use self-mailing --help")
 	},
 }
 
@@ -24,4 +24,5 @@ func Execute() {
 
 func init() {
 	rootCmd.AddCommand(sendCmd)
+	rootCmd.AddCommand(setEnvCmd)
 }

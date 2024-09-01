@@ -80,7 +80,19 @@ func SendWithSendgrid(apiKey, fromName, fromAddr, filepath, subject string, emai
 func sendEmail(client *sendgrid.Client, fromName, fromAddr, toAddr, subject string, fileContent []byte) error {
 	from := mail.NewEmail(fromName, fromAddr)
 	to := mail.NewEmail("Recipient", toAddr)
-	msg := mail.NewSingleEmail(from, subject, to, string(fileContent), "")
+	msg := mail.NewSingleEmail(from, subject, to, "", "")
+
+	p := mail.NewPersonalization()
+	p.AddTos(to)
+	msg.AddPersonalizations(p)
+
+	unsuscribeMsg := `<p>if you wish to unsuscribe, <a href="pdx.vercel.app/unsuscribe">Click here</a></p>`
+	c := mail.NewContent("text/html", string(fileContent)+unsuscribeMsg)
+	msg.AddContent(c)
+
+	msg.SetHeader("List-Unsubscribe", "<mailto:unsubscribe@yourdomain.com>")
+	msg.SetHeader("Precedence", "Bulk")
+	msg.SetHeader("X-Auto-Response-Suppress", "OOF, AutoReply")
 
 	response, err := client.Send(msg)
 	if err != nil {
