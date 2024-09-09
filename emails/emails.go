@@ -1,6 +1,7 @@
 package emails
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -58,6 +59,7 @@ func SendEmails(listpath, filepath, subject, service string) error {
 		}
 
 		dialer := gomail.NewDialer("smtp.gmail.com", 587, fromAddr, gmailAppPwd)
+		dialer.TLSConfig = &tls.Config{InsecureSkipVerify: true}
 
 		return sendWithGmail(dialer, fromAddr, filepath, subject, unsuscribeMsg, &emails)
 	}

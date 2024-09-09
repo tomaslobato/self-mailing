@@ -18,7 +18,7 @@ var setEnvCmd = &cobra.Command{
 
 		err := appendEnvVariable(".env.local", name, value)
 		if err != nil {
-			fmt.Printf("Error reading .env.local", err)
+			fmt.Println("Error reading .env.local", err)
 			return
 		}
 	},
