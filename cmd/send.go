@@ -16,13 +16,17 @@ var sendCmd = &cobra.Command{
 		listpath := args[2]
 		subject := args[4]
 
-		useSendgrid, err := cmd.Flags().GetBool("sendgrid")
+		useSendgrid, _ := cmd.Flags().GetBool("sendgrid")
+		useGmail, _ := cmd.Flags().GetBool("gmail")
 		var service string
 		if useSendgrid {
 			service = "sendgrid"
 		}
+		if useGmail {
+			service = "gmail"
+		}
 
-		err = emails.SendEmails(listpath, filepath, subject, service)
+		err := emails.SendEmails(listpath, filepath, subject, service)
 		if err != nil {
 			fmt.Printf("Error sending emails: %v\n", err)
 		}
@@ -31,4 +35,5 @@ var sendCmd = &cobra.Command{
 
 func init() {
 	sendCmd.Flags().Bool("sendgrid", false, "Use SendGrid as the email service")
+	sendCmd.Flags().Bool("gmail", false, "Use Gmail as the email service")
 }
