@@ -36,12 +36,3 @@ self-mailing send ./posts/"index.html" to ./list.json subject "Send your own ema
 
 ### Unsuscribe message
 If you want to set an unsuscribe message at the bottom of your emails run `self-mailing setenv UNSUSCRIBE_LINK <value>` replacing value by your unsuscribe link
-
-### Supported
-tools:
-- sendgrid
-- ~gmail~ not yet
-
-formats:
-- html
-- ~markdown~ not yet
