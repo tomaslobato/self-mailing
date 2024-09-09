@@ -34,6 +34,9 @@ self-mailing send <file path> to <list.json path> subject <subject> [--sending t
 self-mailing send ./posts/"index.html" to ./list.json subject "Send your own emails for free" --sendgrid
 ```
 
+### Unsuscribe message
+If you want to set an unsuscribe message at the bottom of your emails run `self-mailing setenv UNSUSCRIBE_LINK <value>` replacing value by your unsuscribe link
+
 ### Supported
 tools:
 - sendgrid
